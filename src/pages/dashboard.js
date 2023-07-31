@@ -5,7 +5,7 @@ import { PoseNetCamera } from '../components/PoseDetection/camera';
 const Dashboard = () => {
   return (
     <>
-      <SEO title="Dashboard | BodyPose - Break Slouching Habits." />
+      <SEO title="Dashboard | FixPosture - Break Slouching Habits." />
       <PoseNetCamera />
     </>
   );

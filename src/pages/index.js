@@ -15,7 +15,7 @@ const IndexPage = () => {
 
   return (
     <>
-      <SEO title="BodyPose - Break Slouching Habits." />
+      <SEO title="FixPosture - Break Slouching Habits." />
       <div className="bg-gray-400 flex flex-grow h-full">
         <div className="container px-6 mx-auto flex flex-col flex-grow h-full">
           <div
@@ -25,7 +25,7 @@ const IndexPage = () => {
             <div className="mt-20 sm:mt-40 mb-10">
               <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-4xl font-light leading-tight">
                 Improve your posture{' '}
-                <span className="sm:block font-normal">with BodyPose</span>
+                <span className="sm:block font-normal">with FixPosture</span>
               </h1>
             </div>
             <div className="">
@@ -43,15 +43,15 @@ const IndexPage = () => {
                   panel={
                     <div className="pt-8 sm:pt-2 pb-6 pl-0 sm:pl-3">
                       <h2 className="font-normal leading-none text-2xl">
-                        What is BodyPose?
+                        What is FixPosture?
                       </h2>
                       <p className="text-base mt-6 max-w-3xl">
-                        BodyPose is a web-app, which supports you maintaining a
-                        healthy body posture. While working on computer screens,
-                        we tend to relax our bodies and follow bad posture
-                        habits subconsciously. BodyPose reminds you friendly on
-                        how to realign your body and keeps you motivated working
-                        on your alignment.
+                        FixPosture is a web-app, which supports you maintaining
+                        a healthy body posture. While working on computer
+                        screens,we tend to relax our bodies and follow bad
+                        posture habits subconsciously. FixPosture reminds you
+                        friendly on friendly on how to realign your body and
+                        keeps you motivated working on your alignment.
                       </p>
                     </div>
                   }
@@ -62,36 +62,16 @@ const IndexPage = () => {
                   panel={
                     <div className="pt-8 sm:pt-2 pb-6 pl-0 sm:pl-3">
                       <h2 className="font-normal leading-none text-2xl">
-                        How does BodyPose work?
+                        How does FixPosture work?
                       </h2>
                       <ol className="list-decimal mt-6 max-w-3xl text-base ml-5">
                         <li>Go to Dashboard</li>
                         <li>Sit straight and calibrate your pose</li>
                         <li>
-                          Start working. BodyPose monitors your posture and
+                          Start working. FixPosture monitors your posture and
                           notifies you when you start slouching
                         </li>
                       </ol>
-                    </div>
-                  }
-                />
-                <Tab
-                  id="research"
-                  title="Research"
-                  panel={
-                    <div className="pt-8 sm:pt-2 pb-6 pl-0 sm:pl-3">
-                      <h2 className="font-normal leading-none text-2xl">
-                        Why BodyPose?
-                      </h2>
-                      <p className="mt-6 max-w-3xl text-base">
-                        We developed BodyPose within the practical course
-                        Affective Computing / Empathic Artificial Intelligence
-                        of{' '}
-                        <a href="http://www.en.uni-muenchen.de/">LMU Munich</a>.
-                        <br /> <br />
-                        For futher information request our research paper per
-                        email.
-                      </p>
                     </div>
                   }
                 />
@@ -142,16 +122,16 @@ const IndexPage = () => {
             <div className="flex flex-row justify-between text-gray-700 mb-10">
               <p className="font-normal"></p>
               <div>
-                <a
+                {/* <a
                   className="underline text-gray-700"
                   href="https://www.mobile.ifi.lmu.de/lehrveranstaltungen/affective-computing-6/"
                 >
                   ACEAI
-                </a>
+                </a> */}
                 <span className="mx-2">•</span>
                 <a
                   className="underline text-gray-700"
-                  href="https://github.com/ndrsllwngr/aceai"
+                  href="https://github.com/xenturion111/postureFix"
                 >
                   GitHub
                 </a>

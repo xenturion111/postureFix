@@ -36,15 +36,7 @@ export const Navigation = () => {
         <div className="container px-6 mx-auto flex flex-row h-full justify-between">
           <Navbar.Group align={Alignment.LEFT}>
             <Navbar.Heading>
-              <span className="font-extrabold">BodyPose</span>{' '}
-              <Tooltip
-                content={`${
-                  process.env.COMMIT_REF ? process.env.COMMIT_REF : 'DEVELOP'
-                }`}
-                position={Position.BOTTOM}
-              >
-                <span className="text-gray-300 font-medium text-xs">v1.0</span>
-              </Tooltip>
+              <span className="font-extrabold">FixPosture</span>{' '}
             </Navbar.Heading>
           </Navbar.Group>
           <div className="block md:hidden">
