@@ -281,9 +281,9 @@ export const Drawer = () => {
       </div>
       <div className={Classes.DRAWER_FOOTER}>
         <a href="https://www.mobile.ifi.lmu.de/lehrveranstaltungen/affective-computing-6/">
-          ACEAI
+          Xenturion
         </a>{' '}
-        2019/20
+        2023
       </div>
     </BluePrintDrawer>
   );

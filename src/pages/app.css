@@ -98,3 +98,9 @@ div[role="group"][tabindex] {
   background: -webkit-gradient(linear,left bottom,left top,from(#d9e2ec),to(#f0f4f8));
   background: linear-gradient(0deg,#d9e2ec,#f0f4f8)
 }
+
+.bg-gradient-dark {
+  background: #0F2027;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}

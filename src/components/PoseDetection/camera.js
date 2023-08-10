@@ -1274,7 +1274,7 @@ export const PoseNetCamera = () => {
               <div className="bp3-non-ideal-state-visual">
                 <span className="bp3-icon bp3-icon-cube-add"></span>
               </div>
-              <h4 className="bp3-heading">BodyPose not yet calibrated</h4>
+              <h4 className="bp3-heading">Fix posture not yet calibrated</h4>
               <div>Calibrate to start now</div>
               <Calibration />
             </div>

@@ -1,12 +1,9 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import {
   // Icon, Intent,
   Tab,
   Tabs,
 } from '@blueprintjs/core';
-// import { IconNames } from '@blueprintjs/icons';
 import { useUi } from '../components/context-ui';
 import SEO from '../components/seo';
 
@@ -16,7 +13,7 @@ const IndexPage = () => {
   return (
     <>
       <SEO title="FixPosture - Break Slouching Habits." />
-      <div className="bg-gray-400 flex flex-grow h-full">
+      <div className="bg-gray-700 flex flex-grow h-full">
         <div className="container px-6 mx-auto flex flex-col flex-grow h-full">
           <div
             className="flex-grow flex-shrink-0"
@@ -77,46 +74,6 @@ const IndexPage = () => {
                 />
               </Tabs>
             </div>
-            {/* <section className="my-10">
-              <div className="flex flex-row flex-wrap sm:flex-wrap">
-                <div className="w-full sm:w-full md:w-1/4 mt-1">
-                  <h3 className="font-normal leading-none text-2xl py-4">
-                    The Principles
-                  </h3>
-                </div>
-                <div className="w-full sm:w-full md:w-3/4 p-4 bg-white rounded shadow">
-                  <div className="flex flex-row flex-wrap sm:flex-wrap">
-                    <InfoCard
-                      heading="BodyPose is Approved"
-                      body="It is based on the latest findings of scientific research. Furthermore we work with an expert in the medical field of orthopaedics in order to provide you only the best advice for your body."
-                      icon={
-                        <Icon intent={Intent.NONE} icon={IconNames.ASTERISK} />
-                      }
-                    />
-                    <InfoCard
-                      heading="BodyPose is Simple"
-                      body="All you need is a PC and a webcam. It is set up within seconds, no further gadgets are needed."
-                      icon={
-                        <Icon
-                          intent={Intent.NONE}
-                          icon={IconNames.LAYOUT_GRID}
-                        />
-                      }
-                    />
-                    <InfoCard
-                      heading="BodyPose is Precise"
-                      body="We work with Tensorflow's PoseNet Model in order to give you the most precise state of the art feedback for your body posture. It analyzes your alignment and a rule-based system evaluates the quality of your body pose."
-                      icon={
-                        <Icon
-                          intent={Intent.NONE}
-                          icon={IconNames.CALCULATOR}
-                        />
-                      }
-                    />
-                  </div>
-                </div>
-              </div>
-            </section> */}
           </div>
           <div className="my-1 flex-shrink-0">
             <div className="flex flex-row justify-between text-gray-700 mb-10">
@@ -143,28 +100,4 @@ const IndexPage = () => {
     </>
   );
 };
-
-// const InfoCard = props => {
-//   const splitHeading = createArrayFromPhrase(props.heading);
-//   return (
-//     <article className="w-full sm:w-full md:w-1/3 mt-1 flex flex-col justify-between md:pr-4">
-//       <div>
-//         <h4 className="font-normal text-lg leading-snug mb-3">
-//           {`${splitHeading[0]} `}
-//           <span className="font-semibold">{splitHeading[1]}</span>
-//         </h4>
-//         <p>{props.body}</p>
-//       </div>
-//       <div className="py-4">{props.icon}</div>
-//     </article>
-//   );
-// };
-
-// Take in a phrase and separate the third word in an array
-// function createArrayFromPhrase(phrase) {
-//   const splitPhrase = phrase.split(' ');
-//   const thirdWord = splitPhrase.pop();
-//   return [splitPhrase.join(' '), thirdWord];
-// }
-
 export default IndexPage;
