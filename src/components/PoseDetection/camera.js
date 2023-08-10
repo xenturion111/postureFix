@@ -58,6 +58,10 @@ import { statesName, statesColourHex } from '../enums';
 import { Tile } from '../tile';
 import { CountDownComponentMinimal } from '../countdown';
 import Figures from '../../images/svg/index';
+import Missalignment from '../Audio/Missalignment.mp3';
+import Missalignment2 from '../Audio/Missalignment2.mp3';
+import Missalignment3 from '../Audio/Missalignment3.mp3';
+import Missalignment4 from '../Audio/Missalignment4.mp3';
 
 export const history = [];
 const subject = new Subject();
@@ -127,6 +131,10 @@ export const PoseNetCamera = () => {
   const [chartDataHeight, setChartDataHeight] = useState([]);
   // TIMELINE DATA
   const [timelineData, setTimelineData] = useState([timelineModel]);
+  const dangerAudioHead = new Audio(Missalignment);
+  const dangerAudioBody = new Audio(Missalignment2);
+  const dangerAudioDistance = new Audio(Missalignment3);
+  const dangerAudioHeight = new Audio(Missalignment4);
 
   const showToast = useCallback(
     (message = '', intent = Intent.PRIMARY) => {
@@ -567,6 +575,22 @@ export const PoseNetCamera = () => {
                 }
                 if (status === statesName.DANGER) {
                   showToast(toastMsgDanger, Intent.DANGER);
+                  switch (name) {
+                    case 'Head':
+                      dangerAudioHead.play();
+                      break;
+                    case 'Body':
+                      dangerAudioBody.play();
+                      break;
+                    case 'Distance':
+                      dangerAudioDistance.play();
+                      break;
+                    case 'Height':
+                      dangerAudioHeight.play();
+                      break;
+                    default:
+                      break;
+                  }
                 }
               }
               cbChange(status);
@@ -612,9 +636,9 @@ export const PoseNetCamera = () => {
               get(clonehistoryBody, '[0].createdAt', Date.now()),
             cbCurrentStateTimeStamp: setCurrentStateBodyTimeStamp,
             cbChange: setCurrentStateBody,
-            toastMsgSuccess:
+            toastMsgSuccess: 'Well done. Your shoulders are well aligned now.',
+            toastMsgDanger:
               'Misalignment of shoulders detected. Correct posture if possible.',
-            toastMsgDanger: 'Well done. Your shoulders are well aligned now.',
           });
           // DISTANCE
           const centralTendencyDistanceLengthOfVector = Math.abs(
