@@ -1,9 +1,9 @@
 {
   "name": "body-posture",
   "private": true,
-  "description": "Affective Computing / Empathic Artificial Intelligence - Group project (2019/2020), Group Body Posture",
+  "description": "Fix Posture",
   "version": "0.3.0",
-  "author": "Andreas Ellwanger, Timo Erdelt, Samantha Kühn, Johannes Tochtermann",
+  "author": "",
   "dependencies": {
     "@blueprintjs/core": "3.23.1",
     "@blueprintjs/icons": "3.13.0",

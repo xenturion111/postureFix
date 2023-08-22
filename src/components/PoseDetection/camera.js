@@ -359,7 +359,6 @@ export const PoseNetCamera = () => {
               timeWindowDataHead,
             });
           }
-          // https://statistics.laerd.com/statistical-guides/measures-central-tendency-mean-mode-median.php
           let centralTendencyBody;
           let centralTendencyHead;
           let centralTendencyDistance;
@@ -523,6 +522,7 @@ export const PoseNetCamera = () => {
           }
 
           // TIMELINE
+          let dangerStateStartTime = 0;
           const xState = ({
             name,
             value,
@@ -531,13 +531,11 @@ export const PoseNetCamera = () => {
             currentState,
             currentStateTimeStamp,
             cbCurrentStateTimeStamp,
-            // cbWarning,
             cbChange,
             toastMsgSuccess,
             toastMsgDanger,
           }) => {
             let status = statesName.SUCCESS;
-            // CALCULATE NEW STATUS
             if (value <= threshold) {
               timer.reset();
               status = statesName.SUCCESS;
@@ -552,7 +550,6 @@ export const PoseNetCamera = () => {
                 status = statesName.WARNING;
               }
             }
-            // RUN ONLY IF STATUS CHANGED
             if (currentState !== status) {
               setTimelineData([
                 ...timelineData,
@@ -567,43 +564,39 @@ export const PoseNetCamera = () => {
               cbCurrentStateTimeStamp(nextObj.createdAt);
               if (status) {
                 if (
-                  status &&
-                  currentState === statesName.DANGER &&
-                  status === statesName.SUCCESS
+                  status === statesName.SUCCESS &&
+                  currentState === statesName.DANGER
                 ) {
                   showToast(toastMsgSuccess, Intent.SUCCESS);
                 }
                 if (status === statesName.DANGER) {
-                  showToast(toastMsgDanger, Intent.DANGER);
-                  switch (name) {
-                    case 'Head':
-                      dangerAudioHead.play();
-                      break;
-                    case 'Body':
-                      dangerAudioBody.play();
-                      break;
-                    case 'Distance':
-                      dangerAudioDistance.play();
-                      break;
-                    case 'Height':
-                      dangerAudioHeight.play();
-                      break;
-                    default:
-                      break;
+                  const currentTime = Date.now();
+                  const timeElapsed = currentTime - dangerStateStartTime;
+                  if (timeElapsed > 5000) {
+                    dangerStateStartTime = currentTime;
+                    showToast(toastMsgDanger, Intent.DANGER);
+                    switch (name) {
+                      case 'Head':
+                        dangerAudioHead.play();
+                        break;
+                      case 'Body':
+                        dangerAudioBody.play();
+                        break;
+                      case 'Distance':
+                        dangerAudioDistance.play();
+                        break;
+                      case 'Height':
+                        dangerAudioHeight.play();
+                        break;
+                      default:
+                        break;
+                    }
                   }
+                } else {
+                  dangerStateStartTime = 0;
                 }
               }
               cbChange(status);
-              // console.log("input",
-              //   {
-              //     value,
-              //     threshold,
-              //     timer,
-              //     currentState,
-              //     callback,
-              //   },"output",
-              //   { status },
-              // );
             }
           };
 

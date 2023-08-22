@@ -51,6 +51,21 @@ export const Drawer = () => {
                     to="/"
                     active={match}
                     className="bp3-minimal"
+                    icon="home"
+                    text="Home"
+                  />
+                </Link>
+              )}
+            </Match>
+            <Match path="/about">
+              {({ match }) => (
+                <Link to="/" style={{ textDecoration: 'none' }}>
+                  <Button
+                    fill
+                    large
+                    to="/about"
+                    active={match}
+                    className="bp3-minimal"
                     icon="manual"
                     text="About"
                   />
@@ -118,10 +133,10 @@ export const Drawer = () => {
         </div>
       </div>
       <div className={Classes.DRAWER_FOOTER}>
-        <a href="https://www.mobile.ifi.lmu.de/lehrveranstaltungen/affective-computing-6/">
-          ACEAI
+        <a href="https://github.com/xenturion111/postureFix               ">
+          Reza
         </a>{' '}
-        2019/20
+        2023
       </div>
     </BluePrintDrawer>
   );

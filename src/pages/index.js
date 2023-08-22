@@ -1,90 +1,48 @@
 import React from 'react';
-import {
-  // Icon, Intent,
-  Tab,
-  Tabs,
-} from '@blueprintjs/core';
-import { useUi } from '../components/context-ui';
 import SEO from '../components/seo';
+import bad1 from '../components/img/bad1.png';
+import bad2 from '../components/img/bad5.png';
+import bad3 from '../components/img/bad2.png';
+import bad4 from '../components/img/bad4.png';
 
 const IndexPage = () => {
-  const [uiContext] = useUi();
-
   return (
     <>
       <SEO title="FixPosture - Break Slouching Habits." />
-      <div className="bg-gray-700 flex flex-grow h-full">
+      <div className="flex flex-grow h-full">
         <div className="container px-6 mx-auto flex flex-col flex-grow h-full">
-          <div
-            className="flex-grow flex-shrink-0"
-            style={{ flexBasis: 'auto' }}
-          >
-            <div className="mt-20 sm:mt-40 mb-10">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-4xl font-light leading-tight">
-                Improve your posture{' '}
-                <span className="sm:block font-normal">with FixPosture</span>
-              </h1>
+          <div className="flex-grow flex-shrink-0 mt-20 sm:mt-40 mb-10">
+            <div className="flex">
+              <img
+                className="w-1/4 h-auto mr-2"
+                src={bad1}
+                alt="Bad Posture 1"
+              />
+              <img
+                className="w-1/4
+                h-auto"
+                src={bad2}
+                alt="Bad Posture 2"
+              />
+              <img
+                className="w-1/4 h-auto ml-2"
+                src={bad3}
+                alt="Bad Posture 3"
+              />
+              <img
+                className="w-1/4 h-auto ml-2"
+                src={bad4}
+                alt="Bad Posture 4"
+              />
             </div>
-            <div className="">
-              <Tabs
-                className="mt-0 p-4 bg-white rounded shadow"
-                id="tabs"
-                animate
-                renderActiveTabPanelOnly
-                large
-                vertical={!uiContext.screenWidthSmallerThanSM}
-              >
-                <Tab
-                  id="about"
-                  title="About"
-                  panel={
-                    <div className="pt-8 sm:pt-2 pb-6 pl-0 sm:pl-3">
-                      <h2 className="font-normal leading-none text-2xl">
-                        What is FixPosture?
-                      </h2>
-                      <p className="text-base mt-6 max-w-3xl">
-                        FixPosture is a web-app, which supports you maintaining
-                        a healthy body posture. While working on computer
-                        screens,we tend to relax our bodies and follow bad
-                        posture habits subconsciously. FixPosture reminds you
-                        friendly on friendly on how to realign your body and
-                        keeps you motivated working on your alignment.
-                      </p>
-                    </div>
-                  }
-                />
-                <Tab
-                  id="manual"
-                  title="Manual"
-                  panel={
-                    <div className="pt-8 sm:pt-2 pb-6 pl-0 sm:pl-3">
-                      <h2 className="font-normal leading-none text-2xl">
-                        How does FixPosture work?
-                      </h2>
-                      <ol className="list-decimal mt-6 max-w-3xl text-base ml-5">
-                        <li>Go to Dashboard</li>
-                        <li>Sit straight and calibrate your pose</li>
-                        <li>
-                          Start working. FixPosture monitors your posture and
-                          notifies you when you start slouching
-                        </li>
-                      </ol>
-                    </div>
-                  }
-                />
-              </Tabs>
-            </div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-4xl font-light leading-tight">
+              Improve your posture <b>with FixPosture</b>
+            </h1>
           </div>
           <div className="my-1 flex-shrink-0">
             <div className="flex flex-row justify-between text-gray-700 mb-10">
               <p className="font-normal"></p>
               <div>
-                {/* <a
-                  className="underline text-gray-700"
-                  href="https://www.mobile.ifi.lmu.de/lehrveranstaltungen/affective-computing-6/"
-                >
-                  ACEAI
-                </a> */}
                 <span className="mx-2">•</span>
                 <a
                   className="underline text-gray-700"

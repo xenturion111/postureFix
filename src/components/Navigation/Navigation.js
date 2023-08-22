@@ -57,6 +57,19 @@ export const Navigation = () => {
                       to="/"
                       active={match}
                       className="bp3-minimal"
+                      icon="home"
+                      text="Home"
+                    />
+                  </Link>
+                )}
+              </Match>
+              <Match exact path="/about">
+                {({ match }) => (
+                  <Link to="/about" style={{ textDecoration: 'none' }}>
+                    <Button
+                      to="/about"
+                      active={match}
+                      className="bp3-minimal"
                       icon="manual"
                       text="About"
                     />
