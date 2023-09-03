@@ -58,10 +58,10 @@ import { statesName, statesColourHex } from '../enums';
 import { Tile } from '../tile';
 import { CountDownComponentMinimal } from '../countdown';
 import Figures from '../../images/svg/index';
-import Missalignment from '../Audio/Missalignment.mp3';
-import Missalignment2 from '../Audio/Missalignment2.mp3';
-import Missalignment3 from '../Audio/Missalignment3.mp3';
-import Missalignment4 from '../Audio/Missalignment4.mp3';
+import Missalignment from '../Audio/head.mp3';
+import Missalignment2 from '../Audio/head2.mp3';
+import Missalignment3 from '../Audio/head3.mp3';
+import Missalignment4 from '../Audio/head4.mp3';
 
 export const history = [];
 const subject = new Subject();
@@ -83,12 +83,15 @@ let posenetThreshold = 0;
 //   });
 //   return ref.current;
 // }
-
 export const PoseNetCamera = () => {
   // CONTEXT
   const [appContext, setAppContext] = useApp();
   const [uiContext] = useUi();
 
+  const dangerAudioHead = new Audio(Missalignment);
+  const dangerAudioBody = new Audio(Missalignment2);
+  const dangerAudioDistance = new Audio(Missalignment3);
+  const dangerAudioHeight = new Audio(Missalignment4);
   // INTERNAL LOGIC
   const [loading, setLoading] = useState(false);
   const [showScores, setShowScores] = useState(true);
@@ -131,11 +134,6 @@ export const PoseNetCamera = () => {
   const [chartDataHeight, setChartDataHeight] = useState([]);
   // TIMELINE DATA
   const [timelineData, setTimelineData] = useState([timelineModel]);
-  const dangerAudioHead = new Audio(Missalignment);
-  const dangerAudioBody = new Audio(Missalignment2);
-  const dangerAudioDistance = new Audio(Missalignment3);
-  const dangerAudioHeight = new Audio(Missalignment4);
-
   const showToast = useCallback(
     (message = '', intent = Intent.PRIMARY) => {
       if (uiContext.showNotificationInApp && uiContext.toasterRef.current) {
@@ -493,7 +491,6 @@ export const PoseNetCamera = () => {
               timerOverallGood.pause();
             }
           }
-
           // IF -BODY- and -HEAD- BAD POSTURE TIMERS & -DISTANCE- & -HEIGHT- TIMERS are less than THRESHOLD
           if (
             !(
@@ -520,9 +517,126 @@ export const PoseNetCamera = () => {
             // START OVERALL -GOOD- TIMER
             timerOverallGood.start({ precision: 'secondTenths' });
           }
-
-          // TIMELINE
-          let dangerStateStartTime = 0;
+          // let currentPlayingAudio = null;
+          // let isDangerAudioPlaying = false;
+          // let dangerAudioInterval = null;
+          // let isAudioPlaying = false;
+          // let isDangerAudioPlaying = false;
+          // const playAudio = audioSrc => {
+          //   const audio = new Audio(audioSrc);
+          //   audio.onended = () => {
+          //     if (isDangerAudioPlaying) {
+          //       playAudio(audioSrc); // Continue playing if danger audio is playing
+          //     } else {
+          //       audioElements.current.shift();
+          //       if (audioElements.current.length > 0) {
+          //         playNextAudio();
+          //       } else {
+          //         setIsAudioPlaying(false);
+          //       }
+          //     }
+          //   };
+          //   audioElements.current.push(audio);
+          //   if (!isAudioPlaying) {
+          //     setIsAudioPlaying(true);
+          //     playNextAudio();
+          //   }
+          // };
+          // const playNextAudio = () => {
+          //   if (audioElements.current.length > 0 && !isAudioPlaying) {
+          //     setIsAudioPlaying(true);
+          //     const audio = audioElements.current[0];
+          //     audio.play();
+          //     currentPlayingAudio = audio;
+          //   }
+          // };
+          // const stopAudio = () => {
+          //   if (currentPlayingAudio) {
+          //     currentPlayingAudio.stop();
+          //     currentPlayingAudio = null;
+          //   }
+          // };
+          // // Define your functions for playing and stopping audio
+          // const xState = ({
+          //   name,
+          //   value,
+          //   threshold,
+          //   timer,
+          //   currentState,
+          //   currentStateTimeStamp,
+          //   cbCurrentStateTimeStamp,
+          //   cbChange,
+          //   toastMsgSuccess,
+          //   toastMsgDanger,
+          // }) => {
+          //   let status = statesName.SUCCESS;
+          //   if (value <= threshold) {
+          //     timer.reset();
+          //     status = statesName.SUCCESS;
+          //   } else if (value > threshold) {
+          //     timer.start({ precision: 'secondTenths' });
+          //     if (
+          //       timer.getTotalTimeValues().seconds >
+          //       appContext.timer_timeUntilBadPosture
+          //     ) {
+          //       status = statesName.DANGER;
+          //     } else {
+          //       status = statesName.WARNING;
+          //     }
+          //   }
+          //   if (currentState !== status) {
+          //     setTimelineData([
+          //       ...timelineData,
+          //       [
+          //         name,
+          //         currentState,
+          //         statesColourHex[currentState],
+          //         currentStateTimeStamp,
+          //         nextObj.createdAt,
+          //       ],
+          //     ]);
+          //     cbCurrentStateTimeStamp(nextObj.createdAt);
+          //     if (currentPlayingAudio) {
+          //       stopAudio();
+          //     }
+          //     if (status === statesName.DANGER) {
+          //       showToast(toastMsgDanger, Intent.DANGER);
+          //       switch (name) {
+          //         case 'Head':
+          //           if (!isDangerAudioPlaying) {
+          //             isDangerAudioPlaying = true;
+          //             playAudio(Missalignment);
+          //           }
+          //           break;
+          //         case 'Body':
+          //           if (!isDangerAudioPlaying) {
+          //             isDangerAudioPlaying = true;
+          //             playAudio(Missalignment2);
+          //           }
+          //           break;
+          //         case 'Distance':
+          //           if (!isDangerAudioPlaying) {
+          //             isDangerAudioPlaying = true;
+          //             playAudio(Missalignment3);
+          //           }
+          //           break;
+          //         case 'Height':
+          //           if (!isDangerAudioPlaying) {
+          //             isDangerAudioPlaying = true;
+          //             playAudio(Missalignment4);
+          //           }
+          //           break;
+          //         default:
+          //           break;
+          //       }
+          //     } else if (status === statesName.SUCCESS) {
+          //       showToast(toastMsgSuccess, Intent.SUCCESS);
+          //       stopAudio();
+          //       isDangerAudioPlaying = false; // Stop danger audio when status changes to success
+          //     }
+          //     cbChange(status);
+          //   }
+          // };
           const xState = ({
             name,
             value,
@@ -531,11 +645,13 @@ export const PoseNetCamera = () => {
             currentState,
             currentStateTimeStamp,
             cbCurrentStateTimeStamp,
+            // cbWarning,
             cbChange,
             toastMsgSuccess,
             toastMsgDanger,
           }) => {
             let status = statesName.SUCCESS;
+            // CALCULATE NEW STATUS
             if (value <= threshold) {
               timer.reset();
               status = statesName.SUCCESS;
@@ -550,6 +666,7 @@ export const PoseNetCamera = () => {
                 status = statesName.WARNING;
               }
             }
+            // RUN ONLY IF STATUS CHANGED
             if (currentState !== status) {
               setTimelineData([
                 ...timelineData,
@@ -564,42 +681,35 @@ export const PoseNetCamera = () => {
               cbCurrentStateTimeStamp(nextObj.createdAt);
               if (status) {
                 if (
-                  status === statesName.SUCCESS &&
-                  currentState === statesName.DANGER
+                  status &&
+                  currentState === statesName.DANGER &&
+                  status === statesName.SUCCESS
                 ) {
                   showToast(toastMsgSuccess, Intent.SUCCESS);
                 }
                 if (status === statesName.DANGER) {
-                  const currentTime = Date.now();
-                  const timeElapsed = currentTime - dangerStateStartTime;
-                  if (timeElapsed > 5000) {
-                    dangerStateStartTime = currentTime;
-                    showToast(toastMsgDanger, Intent.DANGER);
-                    switch (name) {
-                      case 'Head':
-                        dangerAudioHead.play();
-                        break;
-                      case 'Body':
-                        dangerAudioBody.play();
-                        break;
-                      case 'Distance':
-                        dangerAudioDistance.play();
-                        break;
-                      case 'Height':
-                        dangerAudioHeight.play();
-                        break;
-                      default:
-                        break;
-                    }
+                  showToast(toastMsgDanger, Intent.DANGER);
+                  switch (name) {
+                    case 'Head':
+                      dangerAudioHead.play();
+                      break;
+                    case 'Body':
+                      dangerAudioBody.play();
+                      break;
+                    case 'Distance':
+                      dangerAudioDistance.play();
+                      break;
+                    case 'Height':
+                      dangerAudioHeight.play();
+                      break;
+                    default:
+                      break;
                   }
-                } else {
-                  dangerStateStartTime = 0;
                 }
               }
               cbChange(status);
             }
           };
-
           // RUN xSTATE ON ALL SCORES
           // HEAD
           xState({
@@ -823,11 +933,11 @@ export const PoseNetCamera = () => {
             />
           </Portal>
           {/* TIMERS */}
-          <div className="bg-gray-400 py-20">
+          <div className="bg-gradient-dark py-20">
             <div className="container px-6 mx-auto">
               <div className="mb-6 md:mb-12">
                 <div className="flex flex-row items-center">
-                  <h2 className="text-3xl font-bold text-gray-800 leading-tight">
+                  <h2 className="text-3xl font-bold text-p leading-tight">
                     Timers
                   </h2>
                   <div className="flex flex-row ml-2 w-full">
@@ -843,7 +953,7 @@ export const PoseNetCamera = () => {
                     </Tooltip>
                   </div>
                 </div>
-                <p className="text-gray-600">Overview of your session</p>
+                <p className="text-p">Overview of your session</p>
               </div>
 
               <div className="flex flex-wrap -mx-6">
@@ -893,11 +1003,11 @@ export const PoseNetCamera = () => {
             </div>
           </div>
           {/* SCORES */}
-          <div className="bg-white py-10 md:py-20">
+          <div className="bg-color-grey py-10 md:py-20">
             <div className="container px-6 mx-auto">
               <div className="mb-6 md:mb-12">
                 <div className="flex flex-row items-center">
-                  <h2 className="text-3xl font-bold text-gray-800 leading-tight">
+                  <h2 className="text-3xl font-bold text-p leading-tight">
                     Scores
                   </h2>
                   <div className="flex flex-row ml-2 w-full">
@@ -940,7 +1050,7 @@ export const PoseNetCamera = () => {
                     )}
                   </div>
                 </div>
-                <p className="text-gray-600">Real-time BodyPose values</p>
+                <p className="text-p">Real-time BodyPose values</p>
               </div>
 
               <div className="flex flex-wrap -mx-6">
@@ -1026,7 +1136,7 @@ export const PoseNetCamera = () => {
             <div className="container px-6 mx-auto">
               <div className="mb-6 md:mb-12">
                 <div className="flex flex-row items-center">
-                  <h2 className="text-3xl font-bold text-gray-800 leading-tight">
+                  <h2 className="text-3xl font-bold text-p leading-tight">
                     Timeline
                   </h2>
                   <div className="ml-2">
@@ -1042,7 +1152,7 @@ export const PoseNetCamera = () => {
                     </Tooltip>
                   </div>
                 </div>
-                <p className="text-gray-600">Aggregated session data</p>
+                <p className="text-p">Aggregated session data</p>
               </div>
 
               <div className="flex flex-wrap -mx-6">
@@ -1058,9 +1168,7 @@ export const PoseNetCamera = () => {
                         content="Interactive timline of states"
                         position={Position.BOTTOM}
                       >
-                        <div className="font-semibold text-gray-700">
-                          Timeline
-                        </div>
+                        <div className="font-semibold text-p">Timeline</div>
                       </Tooltip>
                     </div>
                   </div>
@@ -1069,11 +1177,11 @@ export const PoseNetCamera = () => {
             </div>
           </div>
           {/* HEAD */}
-          <div className="bg-white py-10 md:py-20">
+          <div className="bg-gradient-dark py-10 md:py-20">
             <div className="container px-6 mx-auto">
               <div className="mb-6 md:mb-12">
                 <div className="flex flex-row items-center">
-                  <h2 className="text-3xl font-bold text-gray-800 leading-tight">
+                  <h2 className="text-3xl font-bold text-white leading-tight">
                     Figures
                   </h2>
                   <div className="ml-2">
@@ -1089,7 +1197,7 @@ export const PoseNetCamera = () => {
                     </Tooltip>
                   </div>
                 </div>
-                <p className="text-gray-600">
+                <p className="text-p">
                   Graphical representation of your posture
                 </p>
               </div>
@@ -1099,7 +1207,7 @@ export const PoseNetCamera = () => {
                   <div
                     className={`rounded-lg shadow-xl text-center pt-${
                       !showHead ? '6' : '12'
-                    } pb-6 bg-gradient-gray`}
+                    } pb-6 bg-color-grey`}
                   >
                     {showHead === true && (
                       <div className="p-4">
@@ -1181,7 +1289,7 @@ export const PoseNetCamera = () => {
                         content="Interactive front view of head"
                         position={Position.BOTTOM}
                       >
-                        <div className="font-semibold text-gray-700">
+                        <div className="font-semibold text-p">
                           Distance & Height
                         </div>
                       </Tooltip>
@@ -1193,7 +1301,7 @@ export const PoseNetCamera = () => {
                   <div
                     className={`rounded-lg shadow-xl text-center pt-${
                       !showHead ? '6' : '12'
-                    } pb-6 bg-gradient-gray`}
+                    } pb-6 bg-color-grey`}
                   >
                     {showHead === true && (
                       <div className="p-4">
@@ -1273,7 +1381,7 @@ export const PoseNetCamera = () => {
                         content="Interactive front view of head"
                         position={Position.BOTTOM}
                       >
-                        <div className="font-semibold text-gray-700">
+                        <div className="font-semibold text-p">
                           Head & Shoulders
                         </div>
                       </Tooltip>
@@ -1285,14 +1393,16 @@ export const PoseNetCamera = () => {
           </div>
         </>
       ) : (
-        <div className="bg-gray-400 flex flex-grow h-full">
+        <div className="bg-gradient-dark flex flex-grow h-full">
           <div className="container px-6 mx-auto flex flex-col flex-grow h-full">
             <div className="bp3-non-ideal-state">
               <div className="bp3-non-ideal-state-visual">
                 <span className="bp3-icon bp3-icon-cube-add"></span>
               </div>
-              <h4 className="bp3-heading">Fix posture not yet calibrated</h4>
-              <div>Calibrate to start now</div>
+              <h4 className="bp3-heading text-white">
+                Fix posture not yet calibrated
+              </h4>
+              <div className="text-white">Calibrate to start now</div>
               <Calibration />
             </div>
           </div>

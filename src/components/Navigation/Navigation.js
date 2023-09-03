@@ -29,14 +29,14 @@ export const Navigation = () => {
       <Navbar
         style={{
           position: 'fixed',
-          boxShadow: '0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06)',
           height: 'auto',
+          backgroundColor: '#16161a',
         }}
       >
         <div className="container px-6 mx-auto flex flex-row h-full justify-between">
           <Navbar.Group align={Alignment.LEFT}>
             <Navbar.Heading>
-              <span className="font-extrabold">FixPosture</span>{' '}
+              <span className="font-extrabold text-white">FixPosture</span>{' '}
             </Navbar.Heading>
           </Navbar.Group>
           <div className="block md:hidden">
@@ -56,8 +56,11 @@ export const Navigation = () => {
                     <Button
                       to="/"
                       active={match}
+                      style={{
+                        color: 'white',
+                        backgroundColor: match ? '#7f5af0' : 'transparent',
+                      }}
                       className="bp3-minimal"
-                      icon="home"
                       text="Home"
                     />
                   </Link>
@@ -69,9 +72,28 @@ export const Navigation = () => {
                     <Button
                       to="/about"
                       active={match}
+                      style={{
+                        color: 'white',
+                        backgroundColor: match ? '#7f5af0' : 'transparent',
+                      }}
                       className="bp3-minimal"
-                      icon="manual"
                       text="About"
+                    />
+                  </Link>
+                )}
+              </Match>
+              <Match exact path="/education">
+                {({ match }) => (
+                  <Link to="/education" style={{ textDecoration: 'none' }}>
+                    <Button
+                      to="/education"
+                      active={match}
+                      style={{
+                        color: 'white',
+                        backgroundColor: match ? '#7f5af0' : 'transparent',
+                      }}
+                      className="bp3-minimal"
+                      text="Education"
                     />
                   </Link>
                 )}
@@ -82,8 +104,11 @@ export const Navigation = () => {
                     <Button
                       to="/dashboard"
                       active={match}
+                      style={{
+                        color: 'white',
+                        backgroundColor: match ? '#7f5af0' : 'transparent',
+                      }}
                       className="bp3-minimal"
-                      icon="dashboard"
                       text="Dashboard"
                     />
                   </Link>
@@ -97,6 +122,12 @@ export const Navigation = () => {
               >
                 <Button
                   className="bp3-minimal"
+                  style={{
+                    backgroundColor: appContext.posenet_turnedOn
+                      ? '#7f5af0'
+                      : 'transparent',
+                    color: 'white',
+                  }}
                   icon={appContext.posenet_turnedOn ? 'stop' : 'power'}
                   onClick={handleChange}
                   disabled={
@@ -114,6 +145,12 @@ export const Navigation = () => {
               >
                 <Button
                   className="bp3-minimal"
+                  style={{
+                    backgroundColor: uiContext.videoCanvasIsOpen
+                      ? '#7f5af0'
+                      : 'transparent',
+                    color: 'white',
+                  }}
                   icon={uiContext.videoCanvasIsOpen ? 'eye-on' : 'eye-open'}
                   onClick={handleUiContextChange(
                     'videoCanvasIsOpen',
@@ -131,6 +168,7 @@ export const Navigation = () => {
               >
                 <Button
                   className="bp3-minimal"
+                  style={{ color: 'white' }}
                   icon={
                     uiContext.showNotificationBrowser
                       ? 'notifications-updated'
@@ -145,6 +183,7 @@ export const Navigation = () => {
               <Tooltip content="Settings" position={Position.BOTTOM}>
                 <Button
                   className="bp3-minimal"
+                  style={{ color: 'white' }}
                   icon="cog"
                   onClick={handleUiContextChange('drawerSettingsIsOpen', true)}
                 />

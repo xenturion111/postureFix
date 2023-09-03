@@ -173,6 +173,7 @@ export const Calibration = () => {
           //     setCalibrationDataRaw({ tick, ...currentPoseData });
           //   }
           // }}
+          className="button-color"
           intent={Intent.PRIMARY}
           onClick={handleDialogIsOpen(true)}
         >
@@ -190,7 +191,7 @@ export const Calibration = () => {
           usePortal
         >
           <div
-            className={`${Classes.DIALOG_BODY} flex flex-col items-center justify-center`}
+            className={`${Classes.DIALOG_BODY} flex flex-col items-center justify-center `}
           >
             <p className="text-center" style={{ width: videoWidth }}>
               Please sit up straight and place yourself at your usual distance

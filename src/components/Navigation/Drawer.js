@@ -10,6 +10,7 @@ import { Link } from 'gatsby';
 import { Match } from '@reach/router';
 import { useUi } from '../context-ui';
 import { useApp } from '../context-app';
+import './index.css';
 
 export const Drawer = () => {
   const [uiContext, setUiContext] = useUi();
@@ -66,8 +67,23 @@ export const Drawer = () => {
                     to="/about"
                     active={match}
                     className="bp3-minimal"
-                    icon="manual"
+                    icon="learning"
                     text="About"
+                  />
+                </Link>
+              )}
+            </Match>
+            <Match path="/education">
+              {({ match }) => (
+                <Link to="/" style={{ textDecoration: 'none' }}>
+                  <Button
+                    fill
+                    large
+                    to="/education"
+                    active={match}
+                    className="bp3-minimal"
+                    icon="education"
+                    text="Education"
                   />
                 </Link>
               )}

@@ -73,6 +73,7 @@
     "eslint-plugin-prettier": "3.1.2",
     "eslint-plugin-react": "7.18.3",
     "eslint-plugin-react-hooks": "2.4.0",
+    "file-loader": "^6.2.0",
     "gatsby-plugin-eslint": "2.0.8",
     "prettier": "1.19.1",
     "stylelint": "13.2.0",
@@ -94,7 +95,8 @@
     "preview:prod": "gatsby build && gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
