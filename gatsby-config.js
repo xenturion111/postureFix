@@ -3,7 +3,7 @@ module.exports = {
     title: `BodyPose`,
     description: `Improve your posture with BodyPose`,
     author: `@gatsbyjs`,
-    siteUrl: `https://aceai.netlify.com`,
+    siteUrl: `https://fixpostureapp.netlify.app`,
   },
   plugins: [
     `gatsby-plugin-styled-components`,
@@ -39,8 +39,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://aceai.netlify.com',
-        sitemap: 'https://aceai.netlify.com/sitemap.xml',
+        host: 'https://fixpostureapp.netlify.app/',
+        sitemap: 'https://github.com/xenturion111',
         policy: [{ userAgent: '*', disallow: ['/'] }],
       },
     },

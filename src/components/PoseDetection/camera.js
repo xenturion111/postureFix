@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import React, { useEffect, useState, useCallback } from 'react';
+import { Howl } from 'howler';
 import get from 'lodash/get';
 import * as posenet from '@tensorflow-models/posenet';
 import {
@@ -58,10 +59,7 @@ import { statesName, statesColourHex } from '../enums';
 import { Tile } from '../tile';
 import { CountDownComponentMinimal } from '../countdown';
 import Figures from '../../images/svg/index';
-import Missalignment from '../Audio/head.mp3';
-import Missalignment2 from '../Audio/head2.mp3';
-import Missalignment3 from '../Audio/head3.mp3';
-import Missalignment4 from '../Audio/head4.mp3';
+import audio from '../Audio/alarm.mp3';
 
 export const history = [];
 const subject = new Subject();
@@ -88,17 +86,12 @@ export const PoseNetCamera = () => {
   const [appContext, setAppContext] = useApp();
   const [uiContext] = useUi();
 
-  const dangerAudioHead = new Audio(Missalignment);
-  const dangerAudioBody = new Audio(Missalignment2);
-  const dangerAudioDistance = new Audio(Missalignment3);
-  const dangerAudioHeight = new Audio(Missalignment4);
   // INTERNAL LOGIC
   const [loading, setLoading] = useState(false);
   const [showScores, setShowScores] = useState(true);
   const [showTimers, setShowTimers] = useState(true);
   const [showTimeline, setShowTimeline] = useState(true);
   const [showHead, setShowHead] = useState(true);
-
   // LATEST CALIBRATION DATA
   const [calibrationHeadTick, setcalibrationHeadTick] = useState();
   const [calibrationBodyTick, setcalibrationBodyTick] = useState();
@@ -517,126 +510,6 @@ export const PoseNetCamera = () => {
             // START OVERALL -GOOD- TIMER
             timerOverallGood.start({ precision: 'secondTenths' });
           }
-          // let currentPlayingAudio = null;
-          // let isDangerAudioPlaying = false;
-          // let dangerAudioInterval = null;
-          // let isAudioPlaying = false;
-          // let isDangerAudioPlaying = false;
-          // const playAudio = audioSrc => {
-          //   const audio = new Audio(audioSrc);
-          //   audio.onended = () => {
-          //     if (isDangerAudioPlaying) {
-          //       playAudio(audioSrc); // Continue playing if danger audio is playing
-          //     } else {
-          //       audioElements.current.shift();
-          //       if (audioElements.current.length > 0) {
-          //         playNextAudio();
-          //       } else {
-          //         setIsAudioPlaying(false);
-          //       }
-          //     }
-          //   };
-          //   audioElements.current.push(audio);
-          //   if (!isAudioPlaying) {
-          //     setIsAudioPlaying(true);
-          //     playNextAudio();
-          //   }
-          // };
-          // const playNextAudio = () => {
-          //   if (audioElements.current.length > 0 && !isAudioPlaying) {
-          //     setIsAudioPlaying(true);
-          //     const audio = audioElements.current[0];
-          //     audio.play();
-          //     currentPlayingAudio = audio;
-          //   }
-          // };
-          // const stopAudio = () => {
-          //   if (currentPlayingAudio) {
-          //     currentPlayingAudio.stop();
-          //     currentPlayingAudio = null;
-          //   }
-          // };
-          // // Define your functions for playing and stopping audio
-          // const xState = ({
-          //   name,
-          //   value,
-          //   threshold,
-          //   timer,
-          //   currentState,
-          //   currentStateTimeStamp,
-          //   cbCurrentStateTimeStamp,
-          //   cbChange,
-          //   toastMsgSuccess,
-          //   toastMsgDanger,
-          // }) => {
-          //   let status = statesName.SUCCESS;
-          //   if (value <= threshold) {
-          //     timer.reset();
-          //     status = statesName.SUCCESS;
-          //   } else if (value > threshold) {
-          //     timer.start({ precision: 'secondTenths' });
-          //     if (
-          //       timer.getTotalTimeValues().seconds >
-          //       appContext.timer_timeUntilBadPosture
-          //     ) {
-          //       status = statesName.DANGER;
-          //     } else {
-          //       status = statesName.WARNING;
-          //     }
-          //   }
-          //   if (currentState !== status) {
-          //     setTimelineData([
-          //       ...timelineData,
-          //       [
-          //         name,
-          //         currentState,
-          //         statesColourHex[currentState],
-          //         currentStateTimeStamp,
-          //         nextObj.createdAt,
-          //       ],
-          //     ]);
-          //     cbCurrentStateTimeStamp(nextObj.createdAt);
-          //     if (currentPlayingAudio) {
-          //       stopAudio();
-          //     }
-          //     if (status === statesName.DANGER) {
-          //       showToast(toastMsgDanger, Intent.DANGER);
-          //       switch (name) {
-          //         case 'Head':
-          //           if (!isDangerAudioPlaying) {
-          //             isDangerAudioPlaying = true;
-          //             playAudio(Missalignment);
-          //           }
-          //           break;
-          //         case 'Body':
-          //           if (!isDangerAudioPlaying) {
-          //             isDangerAudioPlaying = true;
-          //             playAudio(Missalignment2);
-          //           }
-          //           break;
-          //         case 'Distance':
-          //           if (!isDangerAudioPlaying) {
-          //             isDangerAudioPlaying = true;
-          //             playAudio(Missalignment3);
-          //           }
-          //           break;
-          //         case 'Height':
-          //           if (!isDangerAudioPlaying) {
-          //             isDangerAudioPlaying = true;
-          //             playAudio(Missalignment4);
-          //           }
-          //           break;
-          //         default:
-          //           break;
-          //       }
-          //     } else if (status === statesName.SUCCESS) {
-          //       showToast(toastMsgSuccess, Intent.SUCCESS);
-          //       stopAudio();
-          //       isDangerAudioPlaying = false; // Stop danger audio when status changes to success
-          //     }
-          //     cbChange(status);
-          //   }
-          // };
           const xState = ({
             name,
             value,
@@ -645,12 +518,17 @@ export const PoseNetCamera = () => {
             currentState,
             currentStateTimeStamp,
             cbCurrentStateTimeStamp,
-            // cbWarning,
             cbChange,
             toastMsgSuccess,
             toastMsgDanger,
           }) => {
+            const dangerAudio = new Howl({
+              src: [audio],
+            });
+
             let status = statesName.SUCCESS;
+            let audioPlaying = false; // Flag to track if audio is playing
+
             // CALCULATE NEW STATUS
             if (value <= threshold) {
               timer.reset();
@@ -662,10 +540,15 @@ export const PoseNetCamera = () => {
                 appContext.timer_timeUntilBadPosture
               ) {
                 status = statesName.DANGER;
+                if (status !== currentState && !audioPlaying) {
+                  dangerAudio.play();
+                  audioPlaying = true; // Set the flag to true when audio starts playing
+                }
               } else {
                 status = statesName.WARNING;
               }
             }
+
             // RUN ONLY IF STATUS CHANGED
             if (currentState !== status) {
               setTimelineData([
@@ -679,37 +562,22 @@ export const PoseNetCamera = () => {
                 ],
               ]);
               cbCurrentStateTimeStamp(nextObj.createdAt);
-              if (status) {
-                if (
-                  status &&
-                  currentState === statesName.DANGER &&
-                  status === statesName.SUCCESS
-                ) {
-                  showToast(toastMsgSuccess, Intent.SUCCESS);
-                }
-                if (status === statesName.DANGER) {
-                  showToast(toastMsgDanger, Intent.DANGER);
-                  switch (name) {
-                    case 'Head':
-                      dangerAudioHead.play();
-                      break;
-                    case 'Body':
-                      dangerAudioBody.play();
-                      break;
-                    case 'Distance':
-                      dangerAudioDistance.play();
-                      break;
-                    case 'Height':
-                      dangerAudioHeight.play();
-                      break;
-                    default:
-                      break;
-                  }
+
+              if (status === statesName.SUCCESS) {
+                showToast(toastMsgSuccess, Intent.SUCCESS);
+                if (audioPlaying) {
+                  dangerAudio.stop();
+                  audioPlaying = false; // Reset the flag when audio stops playing
                 }
               }
+              if (status === statesName.DANGER) {
+                showToast(toastMsgDanger, Intent.DANGER);
+              }
+
               cbChange(status);
             }
           };
+
           // RUN xSTATE ON ALL SCORES
           // HEAD
           xState({
